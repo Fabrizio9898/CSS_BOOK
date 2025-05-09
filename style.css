@@ -1,17 +1,29 @@
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html,
+body {
+  height: 100dvh;
+}
 body {
   font-family: "Onest Variable", "system-ui", sans-serif;
-  background: #ffffff;
   scroll-behavior: smooth;
   overscroll-behavior: none;
-  height: 100vh;
-  background: url("./assets/css.avif");
+  --clear-color: transparent;
+  --dark-color: #111;
+  --light-color: #111a;
+  background: radial-gradient(var(--clear-color) 70%, var(--light-color)),
+    linear-gradient(
+      var(--clear-color) 30%,
+      var(--light-color) 45%,
+      var(--dark-color) 75%
+    ),
+    url("./assets/css.avif");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #main_content {
@@ -23,87 +35,126 @@ body {
   height: 100%;
   padding: 4rem 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.portada_libro {
-  width: 400px;
-  height: 500px;
-  margin: auto;
+.container {
+  z-index: 1;
+  perspective: 3000px;
 }
 
-.book_section{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;    
+.book {
+  position: relative;
+  width: 400px;
+  height: 500px;
+  border-radius: 2px 4px 4px 2px;
+  background: #0c0c0c;
+  box-shadow: 13px 13px 8px 0px #000;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease;
+}
+
+.container:hover .book {
+  transform: rotateY(30deg); /* esto genera la rotación 3D */
+}
+
+.front,
+.left-side {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.front {
+  width: 100%;
+  z-index: 2;
+  transform-origin: left center;
+  transform: translateZ(20px);
+}
+
+.left-side {
+  width: 40px;
+  left: -20px;
+  background: #0c0c0c;
+  -webkit-transform: rotate3d(0, 1, 0, -90deg);
+  -moz-transform: rotate3d(0, 1, 0, -90deg);
+  transform: rotate3d(0, 1, 0, -90deg);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  color: white;
+  box-shadow: inset 0px 0px 8px #a5a5a5;
+
+}
+
+.left-side p {
+  writing-mode: vertical-rl; /* texto vertical legible */
+  text-align: center;
+}
+
+.left-side p span:first-child {
+  font-weight: 400;
+  font-size: 15px;
+  padding-bottom: 20px;
+}
+.left-side p span:last-child {
+  font-weight: 400;
+  font-size: 13px;
+  padding-bottom: 20px;
+}
+
+.cover {
+  width: 100%;
+  height: 100%;
+}
+
+.cover::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 20px;
+  bottom: 0;
+  width: 3px;
+  background: rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 0 3px rgba(255, 255, 255, 0.1);
+}
+.portada_book_section {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px;
 }
 
 .header_book {
-  position: relative;
   width: 100%;
-  height: 200px;
-  background-color: white;
   display: flex;
-  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  overflow: hidden;
-}
-
-.header_book::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: linear-gradient(
-      to right,
-      rgba(79, 79, 79, 0.18) 1px,
-      transparent 1px
-    ),
-    linear-gradient(to bottom, rgba(79, 79, 79, 0.18) 1px, transparent 1px);
-  background-size: 14px 24px;
-  z-index: 0;
-}
-
-.header_content {
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 10px 30px;
-  text-align: center;
-  width: fit-content;
-  background: rgb(131, 125, 125);
-  color: white;
-  overflow: visible;
-  height: 90px;
 }
 
 .header_content_container {
-  margin-top: 14px;
   font-weight: 700;
-  color: black;
+  color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  line-height: 0.5;
-}
-.header_title {
-  font-size: 23px;
-  text-transform: uppercase;
+  line-height: 1lh;
+  margin-left: 15px;
 }
 
-.header_subtitle {
+.header_title {
   font-size: 100px;
   line-height: 1;
 }
 
-
-.footer_book{
-    flex: 1;
-    overflow: hidden;
-    background-color: black;
+.header_subtitle {
+  font-size: 23px;
+  text-transform: uppercase;
+  color: #9c3fdf;
+  opacity: 70%;
 }
