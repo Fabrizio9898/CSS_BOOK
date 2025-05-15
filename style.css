@@ -1,3 +1,4 @@
+/* -------- RESET -------- */
 * {
   margin: 0;
   padding: 0;
@@ -8,9 +9,11 @@ html,
 body {
   height: 100dvh;
 }
+
 body {
   font-family: "Onest Variable", "system-ui", sans-serif;
   scroll-behavior: smooth;
+  width: 100%;
   overscroll-behavior: none;
   --clear-color: transparent;
   --dark-color: #111;
@@ -26,6 +29,7 @@ body {
   background-size: cover;
 }
 
+/* -------- LAYOUT -------- */
 #main_content {
   padding: 0 16px;
   height: 100%;
@@ -48,50 +52,31 @@ body {
   position: relative;
   width: 400px;
   height: 500px;
-  border-radius: 2px 4px 4px 2px;
-  background: #0c0c0c;
   box-shadow: 13px 13px 8px 0px #000;
   transform-style: preserve-3d;
   transition: transform 0.8s ease;
+  display: flex;
+  align-items: center;
 }
 
-.container:hover .book {
-  transform: rotateY(30deg); /* esto genera la rotación 3D */
-}
-
-.front,
+/* -------- LATERAL -------- */
 .left-side {
   position: absolute;
   top: 0;
-  left: 0;
-  height: 100%;
-  transform-style: preserve-3d;
-}
-
-.front {
-  width: 100%;
-  z-index: 2;
-  transform-origin: left center;
-  transform: translateZ(20px);
-}
-
-.left-side {
-  width: 40px;
   left: -20px;
+  width: 40px;
+  height: 100%;
   background: #0c0c0c;
-  -webkit-transform: rotate3d(0, 1, 0, -90deg);
-  -moz-transform: rotate3d(0, 1, 0, -90deg);
   transform: rotate3d(0, 1, 0, -90deg);
   display: flex;
   justify-content: center;
   align-items: flex-end;
   color: white;
   box-shadow: inset 0px 0px 8px #a5a5a5;
-
 }
 
 .left-side p {
-  writing-mode: vertical-rl; /* texto vertical legible */
+  writing-mode: vertical-rl;
   text-align: center;
 }
 
@@ -106,12 +91,12 @@ body {
   padding-bottom: 20px;
 }
 
-.cover {
-  width: 100%;
-  height: 100%;
+/* -------- COVER -------- */
+#portada {
+  background: #000;
 }
 
-.cover::after {
+#portada::after {
   content: "";
   position: absolute;
   top: 0;
@@ -121,14 +106,87 @@ body {
   background: rgba(0, 0, 0, 0.1);
   box-shadow: 1px 0 3px rgba(255, 255, 255, 0.1);
 }
-.portada_book_section {
+
+.cover,
+.back-cover {
+  transform-style: preserve-3d; 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: center left;
+}
+
+.cover {
+  z-index: 10;
+  transition: all 3s;
+}
+
+.cover.flipped {
+  transform: rotateY(-180deg);
+  z-index: 0;
+}
+
+.back-cover {
+  z-index: -2;
+  background-color: #000;
+}
+
+#portada-back {
+  background-color: black;
+}
+
+/* -------- PÁGINAS -------- */
+.pages, .last-page {
+  position: absolute;
+  width: 390px;
+  height: 480px;
+  transform-origin: center left; 
+  left: 0;
+  transform-style: preserve-3d; 
+  border-radius: 2px 10px 10px 2px;
+  background-color: white;
+  transition: transform 0.5s ease;
+}
+
+/* Estado de página vuelta */
+.pages.flipped,
+.last-page.flipped {
+  transform: rotateY(-180deg);
+  z-index: 2 !important;
+}
+
+/* Parte frontal y trasera */
+.front,
+.back {
+  background-color: white;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.front {
+  z-index: 1;
+  backface-visibility: hidden;
+}
+
+.back {
+  z-index: 0;
+  transform: rotateY(180deg);
+}
+
+/* -------- SECCIONES -------- */
+.pages-section {
   position: relative;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 10px 20px;
   overflow: hidden;
+  padding: 10px 20px;
 }
 
 .header_book {
@@ -146,6 +204,7 @@ body {
   justify-content: center;
   line-height: 1lh;
   margin-left: 15px;
+  padding-bottom: 5px;
 }
 
 .header_title {
@@ -153,21 +212,63 @@ body {
   line-height: 1;
 }
 
+.header_title span {
+  display: inline-block;
+  font-size: 60px;
+  color: rgba(126, 126, 126, 0.363);
+  margin-left: 3px;
+  transform: rotate(25deg);
+}
+
 .header_subtitle {
-  font-size: 23px;
+  font-size: 20px;
   text-transform: uppercase;
   color: #9c3fdf;
   opacity: 70%;
 }
 
-
-.image-container{
+.image-container {
   width: 100%;
   height: 300px;
-  margin-top:5px ;
+  margin: 5px 0;
   box-sizing: border-box;
-  background-image: url('./assets/imagen.png');
-background-size: cover;
-background-position: left 15px center; /* o right, o valores exactos */
-background-repeat: no-repeat;
+  background-image: url("./assets/imagen.png");
+  background-size: cover;
+  background-position: left 15px center;
+  background-repeat: no-repeat;
+}
+
+.footer {
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.footer a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 16px;
+  color: #8c1c1c;
+  border: 2px solid #8c1c1c;
+  text-decoration: none;
+  transition: all 0.15s ease-in-out;
+}
+
+.footer a:hover {
+  color: white;
+  background-color: #8c1c1c;
+  border-color: #ff000069;
+}
+
+/* -------- TRANSICIONES INDIVIDUALES -------- */
+.pages:nth-child(2) {
+  transition-duration: 3s;
+}
+.pages:nth-child(3) {
+  transition-duration: 2.6s;
+}
+.pages:nth-child(4) {
+  transition-duration: 2.2s;
 }

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="module" src="script.js"></script>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="fonts.css" />
     <title>Css Book</title>
   </head>
   <body>
@@ -13,28 +13,58 @@
     <main id="main_content">
       <section class="main_section">
         <div class="container">
-        <div class="book">
-          <div class="front">
-          <div class="cover">
-          <section class="portada_book_section">
-            <header class="header_book">
-                <div class="header_content_container">
-                  <h1 class="header_title">CSS</h1>
-                  <h2 class="header_subtitle">THE JOURNEY OF CENTERING</h2>
-                </div>
-            </header>
-            <div class="image-container"></div>
-          </section>
+          <div class="book">
+            <!-- COVER -->
+            <div id="page1" class="cover">
+              <div id="portada" class="front">
+                <section class="pages-section">
+                  <header class="header_book">
+                    <div class="header_content_container">
+                      <h1 class="header_title">
+                        CSS<span class="span-h1">3</span>
+                      </h1>
+                      <h2 class="header_subtitle">THE JOURNEY OF CENTERING</h2>
+                    </div>
+                  </header>
+
+                  <div class="image-container"></div>
+                  <footer class="footer">
+                    <a id="start-reading" href="#">Comenzar Lectura</a>
+                  </footer>
+                </section>
+              </div>
+              <div id="portada-back" class="back">
+                <section class="pages-section">
+                  <div class="background-portada"></div>
+                </section>
+              </div>
+            </div>
+
+            <!-- Pages -->
+
+            <div class="pages"></div>
+            <div class="pages"></div>
+            <div class="pages">
+
+            </div>
+
+            <div class="last-page">
+              <section>
+                <h2>second page content</h2>
+              </section>
+            </div>
+            <div class="back-cover"></div>
+            <div class="left-side">
+              <p>
+                <span>Developed By Fabrizio Andrade</span>
+                <span>2025</span>
+              </p>
+            </div>
+
+            <!-- Back Cover -->
+            <div></div>
+          </div>
         </div>
-      </div>
-      <div class="left-side">
-        <p>
-					<span>Designed By Fabrizio Andrade</span>
-					<span>2025</span>
-				</p>
-      </div>
-      </div>
-    </div>
       </section>
     </main>
   </body>
