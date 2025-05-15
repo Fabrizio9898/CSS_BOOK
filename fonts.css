@@ -12,3 +12,8 @@
 }
  
 
+@font-face {
+  font-family: "pretty";
+  src: url("./fonts/prettyspring.ttf") format("truetype");
+  font-display: swap;
+}

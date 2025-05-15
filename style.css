@@ -27,32 +27,85 @@ body {
     url("./assets/css.avif");
   background-repeat: no-repeat;
   background-size: cover;
+  perspective: 3000px;
+}
+
+.main-section {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  align-items: center;
+  justify-items: center;
+}
+
+.main-header {
+  padding: 2rem clamp(1rem, 4vw, 4rem);
+  width: 100%;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 1rem auto 0;
+  position: relative;
+  min-height: 79px;
+}
+
+.form-container form{
+  display: flex;
+  flex-direction: column;
+}
+.labelform{
+  width: 100%;
+  display: inline-flex;
+  position: relative;
+}
+
+.input-form{
+  font-family:sans-serif;
+    color: #9961d1;
+    z-index: 10;
+    background: #000c;
+    border: 0;
+    outline: 0;
+    width: 100%;
+    height: 3.75rem;
+    padding-left: 2.8rem;
+    font-size: 1.3rem;
+    transition: background .3s, border-color .6s;
+}
+
+.input-form:hover{
+  background-color: #000;
+}
+
+.search-icon{
+  --size: 24px;
+  --color: #fffa;
+  width: var(--size);
+  height: var(--size);
+  color: var(--color);
+  z-index: 10;
+  align-self: center;
+  position: absolute;
+  left: 10px;
 }
 
 /* -------- LAYOUT -------- */
-#main_content {
-  padding: 0 16px;
-  height: 100%;
-}
-
-.main_section {
-  height: 100%;
-  padding: 4rem 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 .container {
   z-index: 1;
   perspective: 3000px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  /* padding: 2rem; */
 }
 
 .book {
   position: relative;
   width: 400px;
   height: 500px;
-  box-shadow: 13px 13px 8px 0px #000;
   transform-style: preserve-3d;
   transition: transform 0.8s ease;
   display: flex;
@@ -109,13 +162,14 @@ body {
 
 .cover,
 .back-cover {
-  transform-style: preserve-3d; 
+  transform-style: preserve-3d;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   transform-origin: center left;
+  box-shadow: 13px 13px 8px 0px #000;
 }
 
 .cover {
@@ -138,16 +192,17 @@ body {
 }
 
 /* -------- PÁGINAS -------- */
-.pages, .last-page {
+.pages,
+.last-page {
   position: absolute;
   width: 390px;
   height: 480px;
-  transform-origin: center left; 
+  transform-origin: center left;
   left: 0;
-  transform-style: preserve-3d; 
+  transform-style: preserve-3d;
   border-radius: 2px 10px 10px 2px;
-  background-color: white;
   transition: transform 0.5s ease;
+  background-image: url("./assets/papertexture.jpg");
 }
 
 /* Estado de página vuelta */
@@ -160,12 +215,12 @@ body {
 /* Parte frontal y trasera */
 .front,
 .back {
-  background-color: white;
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
+  backface-visibility: hidden;
 }
 
 .front {
@@ -176,10 +231,11 @@ body {
 .back {
   z-index: 0;
   transform: rotateY(180deg);
+  border-right: 2px solid grey;
 }
 
 /* -------- SECCIONES -------- */
-.pages-section {
+.portada-section {
   position: relative;
   width: 100%;
   height: 100%;
@@ -188,6 +244,25 @@ body {
   overflow: hidden;
   padding: 10px 20px;
 }
+
+.pages-section {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 10px 20px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+/* .back .pages-section::after{
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 3px;
+  background-color: red;
+  top: 0;
+  right: 0;
+} */
 
 .header_book {
   width: 100%;
@@ -271,4 +346,42 @@ body {
 }
 .pages:nth-child(4) {
   transition-duration: 2.2s;
+}
+
+.header_pages {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.h1-pages {
+  font-family: "pretty";
+  font-size: 25px;
+}
+
+.hrs {
+  width: 100%;
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.hrs hr {
+  border: 1px solid black;
+}
+.hrs hr:first-child {
+  width: 80%;
+}
+.hrs hr:last-child {
+  width: 70%;
+}
+
+@media (width <= 850px) {
+  .form-container {
+    max-width: 90%;
+  }
 }
