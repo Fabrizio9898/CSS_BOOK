@@ -114,8 +114,8 @@ body {
 
 .book {
   position: relative;
-  width: 400px;
-  height: 500px;
+  width: 500px;
+  height: 600px;
   transform-style: preserve-3d;
   transition: transform 0.8s ease;
   display: flex;
@@ -205,8 +205,8 @@ body {
 .pages,
 .last-page {
   position: absolute;
-  width: 390px;
-  height: 480px;
+  width: 490px;
+  min-height: 580px;
   transform-origin: center left;
   left: 0;
   transform-style: preserve-3d;
@@ -262,6 +262,7 @@ body {
   padding: 10px 20px;
   display: grid;
   grid-template-rows: auto 1fr auto;
+
 }
 
 /* .back .pages-section::after{
@@ -358,17 +359,23 @@ body {
   transition-duration: 2.2s;
 }
 
+
+
+/* PAGES CONTENT */
 .header_pages {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0  clamp(1rem, 4vw, 4rem) 1rem;
 }
 
 .h1-pages {
   font-family: "pretty";
-  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  font-size: 32px;
 }
 
 .hrs {
@@ -395,7 +402,6 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-bottom: 10px;
 }
 
 .footer-front-pages{
@@ -403,7 +409,6 @@ body {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-bottom: 10px;
 }
 
 .footer-back-pages a {
@@ -448,7 +453,19 @@ body {
   }
 }
 
+.pages-section footer{
+  margin: 15px 0 10px;
+}
+.content-pages{
+display: grid;
+background-color: rgb(255, 144, 144);
+grid-template-columns: 50% 50%;
+}
 
+.content-pages .columns{
+  padding: 1em  0;
+}
+/* clamp(1rem, 4vw, 4rem) */
 @media (width <= 850px) {
   .form-container {
     max-width: 90%;
